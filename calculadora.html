@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fundo{
+            background-image: linear-gradient(45deg, #b4f0a8, #CC99FE);
+            height:100vh;
+            color: #e4c8c4;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+            text-align: center;
+        }
+        .calculadora{
+            position: absolute;
+            background-color: #c3897d;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%); /*--aqui ele centraliza a calculadora*/
+            border-radius: 10px;
+            padding: 20px;
+            
+        }
+        .botao{
+            background-color: #e2d0d6;
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            border-color:rgb(82, 2, 42);
+            cursor: pointer; /*muda a setinha para mãozinha*/
+            border:none;
+            color: #864b3d;
+            margin: 3px;
+        }
+        .botao:hover{
+            background-color: #e4c8c4;
+        }
+        
+        
+        #resultado{
+            background-color: white;
+            width: 224px;
+            height: 35px;
+            margin: 3px;
+            text-align: right;
+            padding: 3px;
+            color: black;
+            
+        }
+      
+
+        
+    </style>
+
+</head>
+<body>
+    <div class="fundo">
+        <div class="calculadora">
+            <h2>CALCULADORA</h2>
+            <p id="resultado"></p>
+            <table>
+                <tr> <!--mesma classe para todos os botões pq eles são iguais-->
+                    <td><button class="botao" onclick="deleta()">C</button></td>
+                    <td><button class="botao" onclick="back()"><</button></td>
+                    <td><button class="botao" onclick="insert('%')">%</button></td>
+                    <td><button class="botao" onclick="insert('/')">÷</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('*')">×</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao"onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="botao" id="zero" style="width: 108px" onclick="insert('0')">0</button></td> <!--faz com que o 0 ocupe duas colunas-->
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                    <td><button class="botao" onclick="calcular()">=</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function insert(num)
+        {
+            var numero = document.getElementById("resultado").innerHTML
+            document.getElementById('resultado').innerHTML= numero + num;
+        }
+
+        function deleta()
+        {
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        function back()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML= resultado.substring(0, resultado.length - 1);
+        }
+
+        function calcular()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado)
+            {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+        }
+
+
+    </script>
+</body>
+</html>
